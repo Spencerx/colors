@@ -1,7 +1,8 @@
-/src/
 /scripts/
 .gitignore
+.nvmrc
+pnpm-lock.yaml
 tsconfig.json
-rollup.config.js
-yarn.lock
-package-lock.json
+tsconfig.node.json
+tsconfig.package.json
+tsup.config.ts
