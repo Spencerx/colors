@@ -1,18 +1,8 @@
 {
-  "compilerOptions": {
-    "outDir": ".",
-    "declarationDir": "types",
-    "module": "esnext",
-    "target": "ES2019",
-    "lib": ["esnext"],
-    "declaration": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "isolatedModules": true
-  },
-  "include": ["./src"],
-  "exclude": ["/*.css", "/index.js", "/index.mjs"]
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.package.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

@@ -1,8 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const allColorScales = require("../index");
+import fs from "node:fs";
+import path from "node:path";
+import tsconfig from "../tsconfig.package.json" with { type: "json" };
+import * as allColorScales from "../dist/index.mjs";
 
-const outputDir = require("../tsconfig.json").compilerOptions.outDir;
+const outputDir = path.resolve(
+  import.meta.dirname,
+  ".."
+  // TODO: Un-comment this before the next major version bump
+  // tsconfig.compilerOptions.outDir
+);
 
 const supportsP3AtRule = "@supports (color: color(display-p3 1 1 1))";
 const matchesP3MediaRule = "@media (color-gamut: p3)";
@@ -22,7 +28,11 @@ Object.keys(allColorScales)
 
     const srgbValues = Object.entries(allColorScales).find(
       ([name]) => name === key
-    )[1];
+    )?.[1];
+
+    if (!srgbValues) {
+      throw new Error(`No srgb values found for ${key}`);
+    }
 
     const srgbCssProperties = Object.entries(srgbValues)
       .map(([name, value]) => [toCssCasing(name), value])
@@ -33,7 +43,11 @@ Object.keys(allColorScales)
 
     const p3Values = Object.entries(allColorScales).find(
       ([name]) => name === key + "P3" || name === key.replace(/.$/, "P3A")
-    )[1];
+    )?.[1];
+
+    if (!p3Values) {
+      throw new Error(`No p3 values found for ${key}`);
+    }
 
     const p3CssProperties = Object.entries(p3Values)
       .map(([name, value]) => [toCssCasing(name), value])
@@ -50,6 +64,7 @@ Object.keys(allColorScales)
     );
   });
 
+/** @param {string} str */
 function toCssCasing(str) {
   return str
     .replace(/([a-z])(\d)/, "$1-$2")
@@ -57,6 +72,7 @@ function toCssCasing(str) {
     .toLowerCase();
 }
 
+/** @param {string} str */
 function toFileName(str) {
   return toCssCasing(str).replace(/-a$/, "-alpha");
 }

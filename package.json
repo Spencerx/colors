@@ -1,34 +1,54 @@
 {
   "name": "@radix-ui/colors",
   "version": "3.0.0",
-  "contributors": [
-    "Colm Tuite <colm@workos.com>",
-    "Vlad Moroz <vlad@workos.com>"
-  ],
-  "main": "index.js",
-  "module": "index.mjs",
-  "types": "types/index.d.ts",
+  "license": "MIT",
+  "source": "./src/index.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.mts",
+          "default": "./dist/index.mjs"
+        },
+        "require": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.js"
+        }
+      }
+    }
+  },
+  "sideEffects": false,
   "scripts": {
-    "build": "yarn clean && yarn && rollup -c && yarn build-css-modules",
+    "build": "pnpm clean && pnpm && pnpm build-js && pnpm build-css-modules",
+    "build-js": "tsup",
     "build-css-modules": "node ./scripts/build-css-modules.js",
-    "prepublishOnly": "yarn build",
-    "postpublish": "yarn clean",
+    "prepublishOnly": "pnpm build",
+    "postpublish": "pnpm clean",
     "clean": "git clean -fdX"
   },
+  "devDependencies": {
+    "@types/node": "^24",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
+  "homepage": "https://radix-ui.com/colors",
   "keywords": [
     "radix",
     "colors"
   ],
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radix-ui/colors.git"
   },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^8.2.1",
-    "@types/node": "^15.0.3",
-    "rollup": "^2.48.0",
-    "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+  "bugs": {
+    "url": "https://github.com/radix-ui/colors/issues"
   },
-  "license": "MIT"
+  "packageManager": "pnpm@9.15.4"
 }
