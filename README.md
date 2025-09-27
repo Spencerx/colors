@@ -12,9 +12,32 @@ For full documentation, visit [radix-ui.com/colors/docs](https://radix-ui.com/co
 
 ## Installation
 
-`yarn add @radix-ui/colors`
+```sh
+# using npm
+npm install @radix-ui/colors
+
+# using yarn
+yarn add @radix-ui/colors
+
+# using pnpm
+pnpm add @radix-ui/colors
+```
 
 ## Authors
 
 - Colm Tuite ([@colmtuite](https://twitter.com/colmtuite))
 - Vlad Moroz ([@vladyslavmoroz](https://twitter.com/vladyslavmoroz))
+
+---
+
+## Community
+
+- [Github Discussions](https://github.com/radix-ui/colors/discussions) - Ask questions and get answers from other community members.
+- [Discord](https://discord.com/invite/7Xb99uG) - To get involved with the Radix community, ask questions and share tips.
+- [Twitter](https://twitter.com/radix_ui) - To receive updates, announcements, blog posts, and general Radix tips.
+
+## License
+
+Licensed under the MIT License, Copyright © 2022-present [WorkOS](https://workos.com).
+
+See [LICENSE](./LICENSE) for more information.
